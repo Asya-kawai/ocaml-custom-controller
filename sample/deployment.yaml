@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgresql-operator
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: postgresql-operator
+        managedBy: postgresql-operator
+    spec:
+      containers:
+        - name: postgresql
+          image: postgres
+          ports:
+            - containerPort: 5432
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: postgresql-volume
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgresql-volume
+          emptyDir: {}
