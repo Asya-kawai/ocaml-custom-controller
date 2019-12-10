@@ -1,0 +1,4 @@
+apiVersion: mine.jp/v1
+kind: My
+metadata:
+  name: foobar

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-controller
+spec:
+  selector:
+    matchLabels:
+      app: my-controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-controller
+    spec:
+      containers:
+        - name: controller-main
+          image: kawai/my-controller:latest
