@@ -100,3 +100,20 @@ client-go及びapimachineryを利用してカスタムコントローラを実�
 * Runtime.Object: 全てのオブジェクトで共通のインターフェース
 * Scheme: k8s API を go の型定義に 変換するためのもの（定義しなおしたもの）
 
+## 使い方
+
+※ まだ本番で動かさないこと
+
+```
+cd sample
+ocamlfind ocamlopt -linkpkg -package base,unix controller.ml
+
+kubectl apply -f custom-resource-definition.yaml
+kubectl apply -f custom-resource.yaml
+kuebctl apply -f custom-controller.yaml
+
+controller=$(kubectl get po | grep my-controller* | awk '{print $1}')
+
+./a my.mine.jp custom-resource-definition.yaml foobar my-controller custom-resource.yaml ${controller}
+```
+
