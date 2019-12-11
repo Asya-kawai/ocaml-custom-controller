@@ -117,3 +117,12 @@ controller=$(kubectl get po | grep my-controller* | awk '{print $1}')
 ./a my.mine.jp custom-resource-definition.yaml foobar my-controller custom-resource.yaml ${controller}
 ```
 
+## 後片付け
+
+```
+kubectl delete -f custom-resource-definition.yaml
+kubectl delete -f custom-resource.yaml
+kuebctl delete -f custom-controller.yaml
+kubectl delete -f service.yaml
+```
+
