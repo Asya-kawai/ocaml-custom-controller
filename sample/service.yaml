@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: foobar
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    name: foobar
+    managedBy: my-controller
+    appReady: ok
+  type: NodePort
